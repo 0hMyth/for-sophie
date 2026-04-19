@@ -406,3 +406,49 @@ body {
 
 .spotlight { position: absolute; top: -10%; left: 30%; width: 400px; height: 120%; background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%); transform: rotate(15deg); filter: blur(30px); animation: sweep 8s ease-in-out infinite alternate; }
 @keyframes sweep { 0% { transform: rotate(10deg); } 100% { transform: rotate(25deg); } }
+
+/* ============================================
+   MOBILE RESPONSIVENESS (Phones & Tablets)
+   ============================================ */
+@media (max-width: 768px) {
+  /* 1. Adjust text sizes and spacing */
+  .intro-title { font-size: clamp(3rem, 15vw, 4.5rem); }
+  .chapter-title { font-size: clamp(2rem, 8vw, 2.5rem); margin-bottom: 2rem; }
+  .verse { font-size: 1.1rem; line-height: 1.8; }
+  .chapter { padding: 4rem 1.5rem; justify-content: center; }
+
+  /* 2. Center the text for a better mobile reading experience */
+  .chapter .content { z-index: 5; text-align: center; }
+  .roman { text-align: center; margin-bottom: 1rem; }
+  .verse p { text-align: center; }
+
+  /* 3. Hide side navigation dots (they get in the way on small screens) */
+  .chapter-nav { display: none; }
+
+  /* 4. Turn the artwork into a beautiful, faded background "watermark" */
+  .stage-art {
+    width: 100%;
+    height: 60%;
+    right: 0;
+    top: 20%;
+    transform: none;
+    opacity: 0.15; /* Fades the art so the text is perfectly readable over it */
+    z-index: 0;
+    pointer-events: none; /* Stops art from blocking scrolling */
+  }
+
+  /* 5. Specific artwork adjustments to fit the center of the screen */
+  .tv-frame { width: 80%; left: 10%; top: 0; }
+  .couch { width: 100%; left: 0; bottom: 0; }
+  .mug { right: 10%; bottom: 20%; pointer-events: auto; }
+  
+  .candle { left: 50%; transform: translateX(-50%); top: 0; }
+  .d20-wrap { right: 50%; top: 50%; transform: translate(50%, -50%); pointer-events: auto; }
+  
+  .moon { right: 50%; transform: translateX(50%); top: 5%; }
+  .cloud-1 { left: -10%; }
+  .cloud-2 { right: -20%; }
+  
+  /* 6. Hide the bee on mobile (since touchscreens don't have a hovering mouse cursor anyway!) */
+  .bee { display: none !important; }
+}
