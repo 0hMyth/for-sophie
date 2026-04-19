@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Sophie — An Adventure in Six Chapters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Abril+Fatface&family=Cinzel:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="bg-canvas" class="bg-canvas" aria-hidden="true">
+    <div class="bg-layer sitcom-bg active" data-bg="chapter-1"></div>
+    <div class="bg-layer druid-bg" data-bg="chapter-2"></div>
+    <div class="bg-layer ocean-bg" data-bg="chapter-3"></div>
+    <div class="bg-layer clouds-bg" data-bg="chapter-4"></div>
+    <div class="bg-layer honey-bg" data-bg="chapter-5"></div>
+    <div class="bg-layer final-bg" data-bg="chapter-6"></div>
+  </div>
+
+  <nav class="chapter-nav" aria-label="Chapter navigation">
+    <a href="#chapter-1" data-label="The Standard Bearer"></a>
+    <a href="#chapter-2" data-label="The Natural Twenty"></a>
+    <a href="#chapter-3" data-label="The Ocean in Your Gaze"></a>
+    <a href="#chapter-4" data-label="The Softness of the Clouds"></a>
+    <a href="#chapter-5" data-label="The Honey and the Hive"></a>
+    <a href="#chapter-6" data-label="The Final Script"></a>
+  </nav>
+
+  <header class="intro">
+    <div class="intro-inner">
+      <p class="kicker">An adventure in six chapters</p>
+      <h1 class="intro-title"><em>For</em> Sophie</h1>
+      <p class="intro-sub">scroll to begin</p>
+      <div class="scroll-cue"><span></span></div>
+    </div>
+  </header>
+
+  <section id="chapter-1" class="chapter sitcom">
+    <div class="sitcom-stage stage-art" aria-hidden="true">
+      <div class="tv-frame">
+        <div class="tv-static"></div>
+        <div class="tv-label">ON AIR</div>
+      </div>
+      <div class="couch"></div>
+      <div class="mug" id="mug">
+        <div class="mug-body"></div>
+        <div class="mug-handle"></div>
+        <div class="steam"><span></span><span></span><span></span></div>
+      </div>
+      <div class="lamp-glow"></div>
+    </div>
+
+    <div class="content">
+      <div class="roman">I</div>
+      <h2 class="chapter-title sitcom-title">The Standard <em>Bearer</em></h2>
+      <div class="verse">
+        <p>You don't just play the game, you lead the line,</p>
+        <p>With a mind as sharp as any elven blade.</p>
+        <p>You want the sun and all the stars to shine,</p>
+        <p>On every single progress that we've made.</p>
+        <p class="verse-break"></p>
+        <p>A <span class="highlight">"Monica"</span> precision in your touch,</p>
+        <p>Setting the bar where only you can reach.</p>
+        <p>You care for those you love—perhaps too much—</p>
+        <p>By being the example that you preach.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="chapter-2" class="chapter druid">
+    <div class="druid-stage stage-art" aria-hidden="true">
+      <div class="candle">
+        <div class="candle-flame"></div>
+        <div class="candle-stick"></div>
+        <div class="candle-glow"></div>
+      </div>
+      <div class="runes">
+        <span style="--x:10%;--y:20%;--d:0s">✦</span>
+        <span style="--x:85%;--y:15%;--d:1.2s">✦</span>
+        <span style="--x:15%;--y:78%;--d:2.1s">✦</span>
+        <span style="--x:80%;--y:70%;--d:0.6s">✦</span>
+        <span style="--x:50%;--y:8%;--d:1.8s">✦</span>
+      </div>
+      <div class="d20-wrap">
+        <div class="d20" id="d20" role="button" tabindex="0" aria-label="Roll the d20">
+          <span class="d20-number">20</span>
+        </div>
+        <p class="d20-hint">click to roll</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="roman">II</div>
+      <h2 class="chapter-title druid-title">The Natural <em>Twenty</em></h2>
+      <div class="verse">
+        <p>It's not just luck when you begin to roll,</p>
+        <p>It's the fire in your spirit and your eyes.</p>
+        <p>You give the quest your mind, your heart, your soul,</p>
+        <p>The smartest player underneath the skies.</p>
+        <p class="verse-break"></p>
+        <p>You're competitive, a fierce and lovely light,</p>
+        <p>The one who keeps the party on the path.</p>
+        <p>You win the day and win the weary fight,</p>
+        <p>Then save us from the dragon's fiery wrath.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="chapter-3" class="chapter ocean">
+    <div class="ocean-stage stage-art" aria-hidden="true">
+      <div class="bubbles">
+        <span class="bubble" style="--l: 20%; --s: 15px; --d: 0s;"></span>
+        <span class="bubble" style="--l: 50%; --s: 25px; --d: 2s;"></span>
+        <span class="bubble" style="--l: 75%; --s: 10px; --d: 4s;"></span>
+        <span class="bubble" style="--l: 85%; --s: 30px; --d: 1s;"></span>
+        <span class="bubble" style="--l: 30%; --s: 18px; --d: 3.5s;"></span>
+      </div>
+      <div class="waves">
+        <svg viewBox="0 0 800 200" preserveAspectRatio="none">
+          <path d="M0,100 Q100,50 200,100 T400,100 T600,100 T800,100 L800,200 L0,200 Z" fill="rgba(0,105,148,0.2)" animation="wave1 10s infinite linear"></path>
+          <path d="M0,120 Q150,70 300,120 T600,120 T800,120 L800,200 L0,200 Z" fill="rgba(0,80,120,0.3)" animation="wave2 12s infinite linear"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="roman">III</div>
+      <h2 class="chapter-title ocean-title">The Ocean <em>in Your Gaze</em></h2>
+      <div class="verse">
+        <p>They say the sea is deep and wild and blue,</p>
+        <p>But they haven't seen the way you look at me.</p>
+        <p>I'd drown within the salt and silk of you,</p>
+        <p>And sink into that vast, cerulean sea.</p>
+        <p class="verse-break"></p>
+        <p>Your <span class="highlight-blue">eyes</span> are maps to worlds I've never known,</p>
+        <p>A sapphire glow that guides the traveler home.</p>
+        <p>The brightest gems the earth has ever shown,</p>
+        <p>Beneath the rolling surf and white-capped foam.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="chapter-4" class="chapter clouds">
+    <div class="clouds-stage stage-art" aria-hidden="true">
+      <div class="moon"></div>
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+    </div>
+
+    <div class="content">
+      <div class="roman">IV</div>
+      <h2 class="chapter-title clouds-title">The Softness <em>of the Clouds</em></h2>
+      <div class="verse">
+        <p>Your <span class="highlight-silver">smile</span> could break the winter's coldest spell,</p>
+        <p>A flash of light that makes the world feel right.</p>
+        <p>And of your lips, there's much for me to tell—</p>
+        <p>As soft as clouds that drift in pale moonlight.</p>
+        <p class="verse-break"></p>
+        <p>Between the honey and the forest floor,</p>
+        <p>Between the clever wit and grand design,</p>
+        <p>It's your comfort that I'm always longing for,</p>
+        <p>The gentle way your hand is held in mine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="chapter-5" class="chapter honey">
+    <div class="honey-stage stage-art" aria-hidden="true">
+      <svg class="honeycomb-pattern" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="hex" x="0" y="0" width="30" height="26" patternUnits="userSpaceOnUse">
+            <polygon points="15,1 28,8 28,22 15,29 2,22 2,8" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.35"/>
+          </pattern>
+        </defs>
+        <rect width="200" height="200" fill="url(#hex)"/>
+      </svg>
+      <div class="honey-drip" style="--left:22%;--delay:0s"></div>
+      <div class="honey-drip" style="--left:68%;--delay:2.4s"></div>
+      <div class="honey-drip" style="--left:85%;--delay:4.1s"></div>
+      
+      <div class="bee" id="bee">
+        <div class="bee-body"></div>
+        <div class="bee-wing left"></div>
+        <div class="bee-wing right"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="roman">V</div>
+      <h2 class="chapter-title honey-title">The Honey <em>and the Hive</em></h2>
+      <div class="verse">
+        <p>You gather sweetness like a summer bee,</p>
+        <p>But share it with the ones you hold most dear.</p>
+        <p>A selfless kind of <span class="highlight-amber">"Golden Energy,"</span></p>
+        <p>That settles every doubt and every fear.</p>
+        <p class="verse-break"></p>
+        <p>For family and friends, you are the shield,</p>
+        <p>The one who shows us how we ought to live.</p>
+        <p>To your compassion, every heart will yield,</p>
+        <p>For you have so much brilliance left to give.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="chapter-6" class="chapter final">
+    <div class="final-stage stage-art" aria-hidden="true">
+      <div class="spotlight"></div>
+    </div>
+
+    <div class="content">
+      <div class="roman">VI</div>
+      <h2 class="chapter-title final-title">The Final <em>Script</em></h2>
+      <div class="verse">
+        <p>So here's to Sophie—brilliant, bold, and kind,</p>
+        <p>The "Legend-dary" girl who took the lead.</p>
+        <p>The greatest soul that I could hope to find,</p>
+        <p>The only hero that I'll ever need.</p>
+        <p class="verse-break"></p>
+        <p>We'll finish every season, side by side,</p>
+        <p>From the mushroom groves to the starry blue.</p>
+        <p>With nothing left to fear and naught to hide,</p>
+        <p>I'm <span class="highlight">"I'll be there for you"</span>—and only you.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

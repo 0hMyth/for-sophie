@@ -1,0 +1,408 @@
+/* ============================================
+   FOR SOPHIE — Melting Transitions Applied
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'EB Garamond', 'Georgia', serif;
+  --font-roman: 'Cinzel', serif;
+  --font-hand: 'Caveat', cursive;
+  --font-sitcom: 'Abril Fatface', serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #f5f1e8;
+  background: #0a0a0a; /* Fallback */
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============================================
+   BACKGROUND BLENDING SYSTEM
+   ============================================ */
+.bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.bg-layer.active {
+  opacity: 1;
+}
+
+/* Background Definitions for Melting Slides */
+.intro-bg { background: radial-gradient(ellipse at center, #1a1320 0%, #06060a 70%); }
+.sitcom-bg { background: radial-gradient(ellipse at 75% 60%, #5c3510 0%, transparent 45%), linear-gradient(135deg, #3a1010 0%, #1a0808 100%); }
+.druid-bg { background: radial-gradient(ellipse at 70% 40%, #4a280d 0%, transparent 40%), linear-gradient(180deg, #1a0d1a 0%, #06030a 100%); }
+.ocean-bg { background: radial-gradient(ellipse at 30% 70%, #0a2d45 0%, transparent 60%), linear-gradient(180deg, #05101a 0%, #031424 100%); }
+.clouds-bg { background: radial-gradient(ellipse at 50% 20%, #2b3a4a 0%, transparent 50%), linear-gradient(180deg, #101620 0%, #07090d 100%); }
+.honey-bg { background: radial-gradient(ellipse at 80% 30%, #523b10 0%, transparent 60%), linear-gradient(180deg, #1f1406 0%, #080501 100%); }
+.final-bg { background: radial-gradient(ellipse at center, #231b30 0%, #0a0a0f 80%); }
+
+/* ============================================
+   CHAPTER NAVIGATION
+   ============================================ */
+.chapter-nav {
+  position: fixed;
+  right: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.chapter-nav a {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  transition: all 0.4s var(--ease);
+  position: relative;
+}
+
+.chapter-nav a:hover,
+.chapter-nav a.active {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.3);
+}
+
+.chapter-nav a::before {
+  content: attr(data-label);
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s var(--ease);
+  pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.chapter-nav a:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ============================================
+   INTRO HEADER
+   ============================================ */
+.intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.intro-inner {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1.6s var(--ease) both;
+}
+
+.kicker {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 232, 0.6);
+  margin-bottom: 2rem;
+  padding-left: 0.5em;
+}
+
+.intro-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3.5rem, 11vw, 9rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #f5f1e8;
+  margin-bottom: 2rem;
+}
+
+.intro-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: #d4a574;
+  display: block;
+  font-size: 0.45em;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.3em;
+  text-transform: uppercase;
+}
+
+.intro-sub {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: rgba(245, 241, 232, 0.8);
+  margin-bottom: 3rem;
+}
+
+.scroll-cue {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-cue span {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 20px;
+  background: #f5f1e8;
+  animation: scrollDrip 2s ease-in-out infinite;
+}
+
+@keyframes scrollDrip { 0% { top: -20px; } 100% { top: 100%; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ============================================
+   CHAPTER BASE LAYOUT
+   ============================================ */
+.chapter {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4rem 8vw;
+  /* backgrounds removed to allow body background to bleed through */
+}
+
+.chapter .content {
+  position: relative;
+  z-index: 5;
+  max-width: 580px;
+  width: 100%;
+}
+
+.roman {
+  font-family: var(--font-roman);
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  opacity: 0.55;
+  margin-bottom: 1.5rem;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+}
+
+.chapter-title em { font-style: italic; font-weight: 300; }
+
+.verse {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  line-height: 2.1;
+  font-weight: 400;
+}
+
+.verse p {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+
+.chapter.in-view .verse p { opacity: 1; transform: translateY(0); }
+.chapter.in-view .verse p:nth-child(1) { transition-delay: 0.15s; }
+.chapter.in-view .verse p:nth-child(2) { transition-delay: 0.30s; }
+.chapter.in-view .verse p:nth-child(3) { transition-delay: 0.45s; }
+.chapter.in-view .verse p:nth-child(4) { transition-delay: 0.60s; }
+.chapter.in-view .verse p:nth-child(5) { transition-delay: 0.75s; }
+.chapter.in-view .verse p:nth-child(6) { transition-delay: 0.90s; }
+.chapter.in-view .verse p:nth-child(7) { transition-delay: 1.05s; }
+.chapter.in-view .verse p:nth-child(8) { transition-delay: 1.20s; }
+.chapter.in-view .verse p:nth-child(9) { transition-delay: 1.35s; }
+
+.verse-break { height: 0.6rem; }
+
+.chapter .roman, .chapter .chapter-title {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+
+.chapter.in-view .roman { opacity: 0.55; transform: translateY(0); }
+.chapter.in-view .chapter-title { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+
+/* Stage Positioning for Artwork */
+.stage-art {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42%;
+  height: 80%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================
+   CHAPTER I — SITCOM
+   ============================================ */
+.sitcom .roman { color: #f4c47a; }
+.sitcom-title { font-family: var(--font-sitcom); color: #ffd88a; text-shadow: 0 2px 0 #7d2828, 0 4px 12px rgba(0,0,0,0.5); }
+.sitcom-title em { color: #fff3de; font-family: var(--font-display); }
+.highlight { color: #ffb84a; font-style: italic; font-weight: 500; }
+
+.tv-frame {
+  position: absolute; top: 8%; left: 15%; width: 55%; aspect-ratio: 4/3;
+  background: linear-gradient(145deg, #2a1a12 0%, #0f0806 100%);
+  border-radius: 18px; border: 8px solid #1a0f08;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 30px 60px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.tv-static {
+  position: absolute; inset: 10px; border-radius: 8px;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 4px), radial-gradient(circle at center, #c66d1f 0%, #4a1d0a 80%);
+  animation: staticFlicker 0.15s steps(4) infinite;
+}
+@keyframes staticFlicker { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; } }
+.tv-label { position: absolute; top: 14px; right: 18px; font-family: var(--font-sitcom); font-size: 0.75rem; color: #ff4040; animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+.couch { position: absolute; bottom: 8%; left: 5%; width: 85%; height: 22%; background: linear-gradient(180deg, #8a2a2a 0%, #5a1515 100%); border-radius: 20px 20px 8px 8px; }
+.couch::before, .couch::after { content: ''; position: absolute; top: 10%; width: 18%; height: 80%; background: linear-gradient(180deg, #9a3030 0%, #6a1a1a 100%); border-radius: 12px; }
+.couch::before { left: 3%; } .couch::after { right: 3%; }
+
+.mug { position: absolute; bottom: 35%; right: 20%; width: 70px; height: 80px; cursor: pointer; pointer-events: auto; transition: transform 0.3s var(--ease); }
+.mug:hover { transform: translateY(-6px) rotate(-3deg); }
+.mug-body { position: absolute; inset: 20px 5px 0 5px; background: linear-gradient(180deg, #f4f0e8 0%, #c9c0ae 100%); border-radius: 4px 4px 14px 14px; }
+.mug-handle { position: absolute; right: -8px; top: 30px; width: 20px; height: 30px; border: 6px solid #d8cfbd; border-left: none; border-radius: 0 14px 14px 0; }
+.steam { position: absolute; top: -10px; left: 15px; display: flex; gap: 6px; }
+.steam span { width: 6px; height: 20px; background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent); border-radius: 50%; animation: steam 2.5s ease-in-out infinite; }
+.steam span:nth-child(2) { animation-delay: 0.6s; } .steam span:nth-child(3) { animation-delay: 1.2s; }
+@keyframes steam { 0% { transform: translateY(0) scaleX(1); opacity: 0; } 30% { opacity: 0.8; } 100% { transform: translateY(-40px) scaleX(2.5); opacity: 0; } }
+
+/* ============================================
+   CHAPTER II — DRUID
+   ============================================ */
+.druid .roman { color: #d4a574; }
+.druid-title { font-family: var(--font-roman); font-weight: 500; color: #e8dcc0; }
+.druid-title em { color: #d4a574; font-family: var(--font-display); }
+
+.candle { position: absolute; top: 20%; left: 15%; width: 40px; }
+.candle-stick { width: 18px; height: 80px; background: linear-gradient(180deg, #f4e8c8 0%, #c4a878 100%); margin: 0 auto; border-radius: 2px; }
+.candle-flame { width: 14px; height: 24px; background: radial-gradient(ellipse at 50% 100%, #fff1b8 0%, #ffaa2a 50%, #d04820 100%); border-radius: 50% 50% 20% 20%; margin: 0 auto 2px; transform-origin: center bottom; animation: flameFlicker 0.3s ease-in-out infinite alternate; }
+@keyframes flameFlicker { 0% { transform: scale(1, 1) rotate(-2deg); } 100% { transform: scale(1.05, 1.08) rotate(2deg); } }
+.candle-glow { position: absolute; top: -60px; left: -80px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255, 180, 80, 0.35) 0%, transparent 65%); filter: blur(25px); animation: glowPulse 2.5s ease-in-out infinite; }
+@keyframes glowPulse { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+
+.runes span { position: absolute; left: var(--x); top: var(--y); color: #d4a574; font-size: 1.2rem; opacity: 0.3; animation: runeFloat 4s ease-in-out infinite; animation-delay: var(--d); }
+@keyframes runeFloat { 0%, 100% { opacity: 0.2; transform: translateY(0); } 50% { opacity: 0.7; transform: translateY(-8px); } }
+
+.d20-wrap { position: absolute; right: 15%; top: 50%; transform: translateY(-50%); text-align: center; pointer-events: auto; }
+.d20 { width: 140px; height: 140px; margin: 0 auto 1rem; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; background: conic-gradient(from 0deg, #2d1a3a 0deg 60deg, #4a2d5a 60deg 120deg, #3a2145 120deg 180deg, #52316a 180deg 240deg, #3a2145 240deg 300deg, #2d1a3a 300deg 360deg); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); transition: transform 0.3s var(--ease); }
+.d20:hover { transform: scale(1.06); }
+.d20.rolling { animation: d20Roll 0.8s ease-out; }
+@keyframes d20Roll { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(1.15); } 100% { transform: rotate(360deg) scale(1); } }
+.d20.nat20 { background: conic-gradient(from 0deg, #d4a574 0deg 60deg, #f4c47a 60deg 120deg, #b88a44 120deg 180deg, #ffd78a 180deg 240deg, #b88a44 240deg 300deg, #d4a574 300deg 360deg); box-shadow: 0 0 50px rgba(255,215,138,0.8); }
+.d20-number { font-family: var(--font-roman); font-size: 2.5rem; color: #fff; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.d20.nat20 .d20-number { color: #fff3de; text-shadow: 0 0 10px rgba(255,255,255,0.8); animation: pulse 1s infinite; }
+.d20-hint { font-family: var(--font-hand); font-size: 1.2rem; color: #d4a574; opacity: 0.8; }
+
+/* ============================================
+   CHAPTER III — OCEAN
+   ============================================ */
+.ocean .roman { color: #7dbce8; }
+.ocean-title { color: #c4e4ff; }
+.ocean-title em { color: #7dbce8; }
+.highlight-blue { color: #6db4ff; font-style: italic; font-weight: 500; text-shadow: 0 0 15px rgba(109, 180, 255, 0.4); }
+
+.ocean-stage { overflow: hidden; }
+.bubbles { position: absolute; inset: 0; }
+.bubble { position: absolute; bottom: -50px; left: var(--l); width: var(--s); height: var(--s); background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.1)); border-radius: 50%; box-shadow: inset 0 0 10px rgba(255,255,255,0.5); animation: floatBubble 8s ease-in infinite; animation-delay: var(--d); }
+@keyframes floatBubble { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-800px) translateX(30px); opacity: 0; } }
+
+.waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; }
+.waves svg { width: 100%; height: 100%; display: block; }
+@keyframes waveAnim1 { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ============================================
+   CHAPTER IV — CLOUDS
+   ============================================ */
+.clouds .roman { color: #d1d8e0; }
+.clouds-title { color: #f1f2f6; }
+.clouds-title em { color: #a4b0be; }
+.highlight-silver { color: #dfe4ea; font-style: italic; font-weight: 500; text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); }
+
+.clouds-stage { overflow: visible; }
+.moon { position: absolute; top: 15%; right: 20%; width: 120px; height: 120px; background: #f5f6fa; border-radius: 50%; box-shadow: 0 0 60px rgba(245, 246, 250, 0.4), inset -15px -15px 20px rgba(0,0,0,0.1); }
+.cloud { position: absolute; background: #fff; border-radius: 100px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); opacity: 0.8; }
+.cloud::before, .cloud::after { content: ''; position: absolute; background: #fff; border-radius: 50%; }
+.cloud-1 { width: 180px; height: 60px; top: 40%; left: 10%; animation: floatCloud 15s infinite alternate ease-in-out; }
+.cloud-1::before { width: 80px; height: 80px; top: -40px; left: 30px; }
+.cloud-1::after { width: 60px; height: 60px; top: -20px; right: 20px; }
+.cloud-2 { width: 220px; height: 70px; top: 60%; right: -10%; animation: floatCloud 20s infinite alternate-reverse ease-in-out; }
+.cloud-2::before { width: 100px; height: 100px; top: -50px; left: 40px; }
+.cloud-2::after { width: 80px; height: 80px; top: -30px; right: 30px; }
+.cloud-3 { width: 150px; height: 50px; top: 20%; left: -20%; animation: floatCloud 18s infinite alternate ease-in-out; opacity: 0.5; }
+.cloud-3::before { width: 70px; height: 70px; top: -30px; left: 20px; }
+@keyframes floatCloud { 0% { transform: translateX(0); } 100% { transform: translateX(40px); } }
+
+/* ============================================
+   CHAPTER V — HONEY
+   ============================================ */
+.honey .roman { color: #f4c47a; }
+.honey-title { color: #fff3de; }
+.honey-title em { color: #f4c47a; }
+.highlight-amber { color: #ffca6a; font-style: italic; font-weight: 500; text-shadow: 0 0 15px rgba(255, 202, 106, 0.4); }
+
+.honeycomb-pattern { position: absolute; right: -10%; top: -10%; width: 120%; height: 120%; color: #d4923a; }
+.honey-drip { position: absolute; top: -20px; left: var(--left); width: 8px; background: linear-gradient(180deg, #ffb84a 0%, #d4923a 100%); border-radius: 0 0 8px 8px; animation: dripHoney 6s ease-in infinite; animation-delay: var(--delay); }
+@keyframes dripHoney { 0% { height: 0; opacity: 1; top: -20px; } 30% { height: 120px; top: -20px; } 80% { height: 20px; top: 110%; opacity: 1; } 100% { height: 0; top: 120%; opacity: 0; } }
+.bee { position: absolute; width: 40px; height: 30px; z-index: 10; pointer-events: none; transition: transform 0.1s linear; }
+.bee-body { width: 30px; height: 20px; background: repeating-linear-gradient(90deg, #f4c47a 0, #f4c47a 6px, #2a1a12 6px, #2a1a12 12px); border-radius: 50% 40% 40% 50%; position: absolute; top: 5px; left: 5px; }
+.bee-wing { width: 15px; height: 20px; background: rgba(255,255,255,0.7); border-radius: 50% 50% 0 0; position: absolute; top: -5px; transform-origin: bottom center; animation: flap 0.05s infinite alternate; }
+.bee-wing.left { left: 10px; } .bee-wing.right { left: 18px; animation-delay: 0.02s; }
+@keyframes flap { 0% { transform: rotate(-20deg) scaleY(1); } 100% { transform: rotate(20deg) scaleY(0.4); } }
+
+/* ============================================
+   CHAPTER VI — FINAL SCRIPT
+   ============================================ */
+.final .roman { color: #ffffff; }
+.final-title { color: #fff; }
+.final-title em { color: #d4a574; }
+
+.spotlight { position: absolute; top: -10%; left: 30%; width: 400px; height: 120%; background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%); transform: rotate(15deg); filter: blur(30px); animation: sweep 8s ease-in-out infinite alternate; }
+@keyframes sweep { 0% { transform: rotate(10deg); } 100% { transform: rotate(25deg); } }
